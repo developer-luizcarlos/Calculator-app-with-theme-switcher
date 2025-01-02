@@ -1,6 +1,7 @@
 "use strict";
 // DOM elements
 const $calcScreen = document.querySelector("#calc__screen");
+const $calcDeleteKey = document.querySelector("#calc__delKey");
 const $calcResetKey = document.querySelector("#calc__resetKey");
 const $calcResultKey = document.querySelector("#calc__resultKey");
 const $calcNumberKeys = Array.from(
@@ -38,6 +39,16 @@ function addSpecialCharToScreen(element) {
   if (!calcLastCharIsNan && calcScreenValue !== 0) {
     $calcScreen.value += value;
   }
+
+  disabledButtonResult();
+}
+
+function eraseCharacter() {
+  const calcScreenValue = $calcScreen.value;
+  const newCalcValue = calcScreenValue.substring(0, calcScreenValue.length - 1);
+
+  $calcScreen.value =
+    calcScreenValue === "0" || calcScreenValue.length <= 1 ? "0" : newCalcValue;
 
   disabledButtonResult();
 }
@@ -85,6 +96,8 @@ function disabledButtonResult() {
 window.addEventListener("load", resetCalcScreenValue);
 
 $calcResetKey.addEventListener("click", resetCalcScreenValue);
+
+$calcDeleteKey.addEventListener("click", eraseCharacter);
 
 $calcNumberKeys.forEach((numberKey) => {
   numberKey.addEventListener("click", (e) => {
