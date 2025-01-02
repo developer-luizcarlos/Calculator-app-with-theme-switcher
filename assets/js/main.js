@@ -12,6 +12,16 @@ const $calcOperationalKeys = Array.from(
 );
 
 // Function
+function evaluateExpression() {
+  try {
+    $calcScreen.value = eval($calcScreen.value);
+  } catch {
+    $calcScreen.value = "0";
+  }
+
+  disabledButtonResult();
+}
+
 function addNumberToScreen(element) {
   const calcScreenValue = Number($calcScreen.value);
   const value = element.getAttribute("data-value");
@@ -47,8 +57,12 @@ function eraseCharacter() {
   const calcScreenValue = $calcScreen.value;
   const newCalcValue = calcScreenValue.substring(0, calcScreenValue.length - 1);
 
-  $calcScreen.value =
-    calcScreenValue === "0" || calcScreenValue.length <= 1 ? "0" : newCalcValue;
+  const condition =
+    calcScreenValue === "0" ||
+    calcScreenValue.length <= 1 ||
+    /[-]/g.test(calcScreenValue);
+
+  $calcScreen.value = condition ? "0" : newCalcValue;
 
   disabledButtonResult();
 }
@@ -98,6 +112,8 @@ window.addEventListener("load", resetCalcScreenValue);
 $calcResetKey.addEventListener("click", resetCalcScreenValue);
 
 $calcDeleteKey.addEventListener("click", eraseCharacter);
+
+$calcResultKey.addEventListener("click", evaluateExpression);
 
 $calcNumberKeys.forEach((numberKey) => {
   numberKey.addEventListener("click", (e) => {
