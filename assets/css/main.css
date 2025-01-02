@@ -26,6 +26,7 @@ html {
     --numberkey-background: hsl(30, 25%, 89%);
     --numberkey-shadow: hsl(28, 16%, 65%);
     --numberkey-textcolor: hsl(221, 14%, 31%);
+    --other-textcolor: hsl(0, 0%, 100%);
 }
 
 body#theme01 {
@@ -42,6 +43,42 @@ body#theme01 {
     --numberkey-background: hsl(30, 25%, 89%);
     --numberkey-shadow: hsl(28, 16%, 65%);
     --numberkey-textcolor: hsl(221, 14%, 31%);
+    --other-textcolor: hsl(0, 0%, 100%);
+}
+
+body#theme02 {
+    --main-background: hsl(0, 0%, 90%);
+    --toggle-background: hsl(0, 5%, 81%);
+    --keypad-background: hsl(0, 5%, 81%);
+    --screen-background: hsl(0, 0%, 93%);
+    --specialkey-background: hsl(185, 42%, 37%);
+    --specialkey-shadow: hsl(185, 58%, 25%);
+    --specialkey-textcolor: hsl(0, 0%, 100%);
+    --resultkey-background: hsl(25, 98%, 40%);
+    --resultkey-shadow: hsl(25, 99%, 27%);
+    --togglekey-background: hsl(25, 98%, 40%);
+    --numberkey-background: hsl(30, 25%, 89%);
+    --numberkey-shadow: hsl(28, 16%, 65%);
+    --numberkey-textcolor: hsl(60, 10%, 19%);
+    --other-textcolor: hsl(60, 10%, 19%);
+
+}
+
+body#theme03 {
+    --main-background: hsl(268, 75%, 9%);
+    --toggle-background: hsl(268, 71%, 12%);
+    --keypad-background: hsl(268, 71%, 12%);
+    --screen-background: hsl(268, 71%, 12%);
+    --specialkey-background: hsl(281, 89%, 26%);
+    --specialkey-shadow: hsl(285, 91%, 52%);
+    --specialkey-textcolor: hsl(0, 0%, 100%);
+    --resultkey-background: hsl(176, 100%, 44%);
+    --resultkey-shadow: hsl(177, 92%, 70%);
+    --togglekey-background: hsl(176, 100%, 44%);
+    --numberkey-background: hsl(268, 47%, 21%);
+    --numberkey-shadow: hsl(290, 70%, 36%);
+    --numberkey-textcolor: hsl(52, 100%, 62%);
+    --other-textcolor: hsl(52, 100%, 62%);
 }
 
 body {
@@ -63,7 +100,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    color: var(--specialkey-textcolor);
+    color: var(--other-textcolor);
 }
 
 #calc__titleArea {
@@ -158,7 +195,7 @@ body {
     background-color: var(--screen-background);
     border: none;
     text-align: right;
-    color: var(--specialkey-textcolor);
+    color: var(--oth);
     font-size: 2rem;
     font-weight: 600;
     padding-inline: 15px;
