@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -8,4 +10,40 @@ body,
 html {
     width: 100dvw;
     height: 100dvh;
+}
+
+:root {
+    --main-background: hsl(222, 26%, 31%);
+    --toggle-background: hsl(223, 31%, 20%);
+    --keypad-background: hsl(223, 31%, 20%);
+    --specialkey-background: hsl(225, 21%, 49%);
+    --specialkey-shadow: hsl(224, 28%, 35%);
+    --specialkey-textcolor: hsl(0, 0%, 100%);
+    --resultkey-background: hsl(6, 63%, 50%);
+    --resultkey-shadow: hsl(6, 70%, 34%);
+    --togglekey-background: hsl(6, 63%, 50%);
+    --numberkey-background: hsl(30, 25%, 89%);
+    --numberkey-shadow: hsl(28, 16%, 65%);
+    --numberkey-textcolor: hsl(221, 14%, 31%);
+}
+
+body#theme01 {
+    --main-background: hsl(222, 26%, 31%);
+    --toggle-background: hsl(223, 31%, 20%);
+    --keypad-background: hsl(223, 31%, 20%);
+    --specialkey-background: hsl(225, 21%, 49%);
+    --specialkey-shadow: hsl(224, 28%, 35%);
+    --specialkey-textcolor: hsl(0, 0%, 100%);
+    --resultkey-background: hsl(6, 63%, 50%);
+    --resultkey-shadow: hsl(6, 70%, 34%);
+    --togglekey-background: hsl(6, 63%, 50%);
+    --numberkey-background: hsl(30, 25%, 89%);
+    --numberkey-shadow: hsl(28, 16%, 65%);
+    --numberkey-textcolor: hsl(221, 14%, 31%);
+}
+
+body {
+    font-family: "League Spartan", serif;
+    display: grid;
+    place-items: center;
 }
