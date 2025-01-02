@@ -20,6 +20,8 @@ function addNumberToScreen(element) {
   } else {
     $calcScreen.value += value;
   }
+
+  disabledButtonResult();
 }
 
 function addSpecialCharToScreen(element) {
@@ -36,14 +38,19 @@ function addSpecialCharToScreen(element) {
   if (!calcLastCharIsNan && calcScreenValue !== 0) {
     $calcScreen.value += value;
   }
+
+  disabledButtonResult();
 }
 
 /* 
     * verify if the last digit on calc is a special character.
 
-    * Use this same function to disable the result button if the return 
-    is true later in another function that will be actived inside the
-    both functions.
+    * This function is being used to disable the result button if the return 
+    is true inside the function called disabledButtonResult().
+
+    * This function is also being called inside tha function
+    addSpecialCharToScreen(), which adds a operational symbol
+    on the calc screen
 */
 function isLastCharNan() {
   const calcScreenValue = $calcScreen.value.toString();
@@ -54,6 +61,24 @@ function isLastCharNan() {
 
 function resetCalcScreenValue() {
   $calcScreen.value = "0";
+}
+
+/*
+    Function that add the disabled attribute to
+    the result button when the last character 
+    on the calculator screen is a mathematical 
+    operation symbol or a special character or 
+    even if the last two characters are a division 
+    or a product of any number by zero created.
+  */
+function disabledButtonResult() {
+  const twoLastCharIsOperation = /[/*]0$/g.test($calcScreen.value);
+
+  if (isLastCharNan() || twoLastCharIsOperation) {
+    $calcResultKey.setAttribute("disabled", "disabled");
+  } else if (!isLastCharNan()) {
+    $calcResultKey.removeAttribute("disabled");
+  }
 }
 
 // Functions applied
