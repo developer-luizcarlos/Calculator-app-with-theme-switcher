@@ -4,14 +4,36 @@ const $calcScreen = document.querySelector("#calc__screen");
 const $calcDeleteKey = document.querySelector("#calc__delKey");
 const $calcResetKey = document.querySelector("#calc__resetKey");
 const $calcResultKey = document.querySelector("#calc__resultKey");
+const $calcToggleBall = document.querySelector("#calc__toggleBall");
 const $calcNumberKeys = Array.from(
   document.querySelectorAll(".calc__numberKey")
 );
 const $calcOperationalKeys = Array.from(
   document.querySelectorAll(".calc__operationalKey")
 );
+const $calcRadioSwitcher = Array.from(
+  document.querySelectorAll(".calc__radio")
+);
 
 // Function
+function changeCalcTheme(index) {
+  document.body.setAttribute("id", `theme0${index + 1}`);
+
+  changeToggleBallPosition();
+}
+
+function changeToggleBallPosition() {
+  const bodyID = document.body.id;
+
+  if (bodyID === "theme01") {
+    $calcToggleBall.style.left = "4%";
+  } else if (bodyID === "theme02") {
+    $calcToggleBall.style.left = "40%";
+  } else {
+    $calcToggleBall.style.left = "70%";
+  }
+}
+
 function evaluateExpression() {
   try {
     $calcScreen.value = eval($calcScreen.value);
@@ -109,6 +131,8 @@ function disabledButtonResult() {
 // Functions applied
 window.addEventListener("load", resetCalcScreenValue);
 
+window.addEventListener("load", changeToggleBallPosition);
+
 $calcResetKey.addEventListener("click", resetCalcScreenValue);
 
 $calcDeleteKey.addEventListener("click", eraseCharacter);
@@ -124,5 +148,11 @@ $calcNumberKeys.forEach((numberKey) => {
 $calcOperationalKeys.forEach((operationalKey) => {
   operationalKey.addEventListener("click", (e) => {
     addSpecialCharToScreen(e.target);
+  });
+});
+
+$calcRadioSwitcher.forEach((radio, index) => {
+  radio.addEventListener("change", () => {
+    changeCalcTheme(index);
   });
 });
