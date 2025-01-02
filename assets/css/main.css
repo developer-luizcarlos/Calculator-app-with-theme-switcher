@@ -46,4 +46,117 @@ body {
     font-family: "League Spartan", serif;
     display: grid;
     place-items: center;
+    background-color: var(--main-background);
+}
+
+#calc {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#calc__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: var(--specialkey-textcolor);
+}
+
+#calc__titleArea {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#calc__toggleArea {
+    display: flex;
+    align-items: flex-end;
+    gap: 19px;
+}
+
+#calc__toggleArea>label {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#calc__toggleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#calc__toggleLabelWrapper,
+#calc__togglePad {
+    width: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#calc__toggleLabelWrapper>label {
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#calc__togglePad {
+    position: relative;
+    background-color: var(--toggle-background);
+    height: 22px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#calc__toggleBall {
+    position: absolute;
+    left: 4px;
+    width: 18px;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 50%;
+    background-color: var(--togglekey-background);
+    transition: all .4s ease-in-out;
+}
+
+.calc__radio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+#calc__radio-theme1:checked~#calc__toggleBall {
+    left: 4%;
+}
+
+#calc__radio-theme2:checked~#calc__toggleBall {
+    left: 40%;
+}
+
+#calc__radio-theme3:checked~#calc__toggleBall {
+    left: 70%;
+}
+
+#calc__visor {
+    height: 90px;
+    border-radius: 5px;
+    background-color: var(--keypad-background);
+    border: none;
+    text-align: right;
+    color: var(--specialkey-textcolor);
+    font-size: 2rem;
+    font-weight: 600;
+    padding-inline: 15px;
 }

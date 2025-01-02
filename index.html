@@ -11,7 +11,31 @@
 </head>
 
 <body>
-
+    <section id="calc">
+        <header id="calc__header">
+            <div id="calc__titleArea">
+                <h1>calc</h1>
+                <div id="calc__toggleArea">
+                    <label>THEME</label>
+                    <div id="calc__toggleWrapper">
+                        <div id="calc__toggleLabelWrapper">
+                            <label for="calc__radio-theme1">1</label>
+                            <label for="calc__radio-theme2">2</label>
+                            <label for="calc__radio-theme3">3</label>
+                        </div>
+                        <div id="calc__togglePad">
+                            <input type="radio" name="theme-selected" checked id="calc__radio-theme1"
+                                class="calc__radio">
+                            <input type="radio" name="theme-selected" id="calc__radio-theme2" class="calc__radio">
+                            <input type="radio" name="theme-selected" id="calc__radio-theme3" class="calc__radio">
+                            <span id="calc__toggleBall"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="text" value="0" readonly id="calc__visor">
+        </header>
+    </section>
 </body>
 
 </html>
