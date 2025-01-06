@@ -35,8 +35,14 @@ function changeToggleBallPosition() {
 }
 
 function evaluateExpression() {
+  const calcScreenValue = $calcScreen.value;
+  const evalExpression = eval(calcScreenValue);
+  const notDecimalExpression = evalExpression == Math.round(evalExpression);
+
   try {
-    $calcScreen.value = eval($calcScreen.value);
+    $calcScreen.value = notDecimalExpression
+      ? evalExpression
+      : evalExpression.toFixed(5);
   } catch {
     $calcScreen.value = "0";
   }
@@ -57,18 +63,14 @@ function addNumberToScreen(element) {
   disabledButtonResult();
 }
 
-function addSpecialCharToScreen(element) {
-  const calcScreenValue = Number($calcScreen.value);
-  const value = element.getAttribute("data-value");
-
-  const calcLastCharIsNan = isLastCharNan();
-
-  /*
-    if the last digit on calc is a number and the unique value on
-    calc screen isn't zero, a special character will be added to 
+/*
+    if the last digit on calc is a number, a special character will be added to 
     the calc screen
   */
-  if (!calcLastCharIsNan && calcScreenValue !== 0) {
+function addSpecialCharToScreen(element) {
+  const value = element.getAttribute("data-value");
+
+  if (!isLastCharNan()) {
     $calcScreen.value += value;
   }
 
@@ -77,7 +79,11 @@ function addSpecialCharToScreen(element) {
 
 function eraseCharacter() {
   const calcScreenValue = $calcScreen.value;
-  const newCalcValue = calcScreenValue.substring(0, calcScreenValue.length - 1);
+  const calcScreenLastCharacter = calcScreenValue.substring(
+    0,
+    calcScreenValue.length - 1
+  );
+  const newCalcValue = calcScreenLastCharacter;
 
   const condition =
     calcScreenValue === "0" ||
