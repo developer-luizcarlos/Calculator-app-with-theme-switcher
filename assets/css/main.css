@@ -93,6 +93,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: slideToSide .5s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
 }
 
 #calc__header {
@@ -264,4 +267,11 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+@keyframes slideToSide {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
