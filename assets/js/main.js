@@ -15,11 +15,30 @@ const $calcRadioSwitcher = Array.from(
   document.querySelectorAll(".calc__radio")
 );
 
-// Function
-function changeCalcTheme(index) {
-  document.body.setAttribute("id", `theme0${index + 1}`);
+// Functions
 
+/*
+  It changes the value of the theme selected, apllying
+  to the body the new ID calling the determineBodyTheme
+  function as well and changing the toggle icon position.
+*/
+function changeCalcTheme(index) {
+  localStorage.setItem("theme", `theme0${index + 1}`);
+
+  determineBodyTheme();
   changeToggleBallPosition();
+}
+
+/*
+  This function search for a value saved in the localStorage with 
+  the name 'theme0${?}', which '?' symbol could be 1, 2 or 3.
+  If there's no value saved, the default value will be 'theme01'.
+*/
+function determineBodyTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  const themeSelected = savedTheme === null ? "theme01" : savedTheme;
+
+  document.body.setAttribute("id", `${themeSelected}`);
 }
 
 function changeToggleBallPosition() {
@@ -136,6 +155,8 @@ function disabledButtonResult() {
 
 // Functions applied
 window.addEventListener("load", resetCalcScreenValue);
+
+window.addEventListener("load", determineBodyTheme);
 
 window.addEventListener("load", changeToggleBallPosition);
 
