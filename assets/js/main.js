@@ -18,30 +18,30 @@ const $calcRadioSwitcher = Array.from(
 // Functions
 
 /*
-  It changes the value of the theme selected, apllying
+  * It changes the value of the theme selected, apllying
   to the body the new ID calling the determineBodyTheme
   function as well and changing the toggle icon position.
 */
-function changeCalcTheme(index) {
+const changeCalcTheme = (index) => {
   localStorage.setItem("theme", `theme0${index + 1}`);
 
   determineBodyTheme();
   changeToggleBallPosition();
-}
+};
 
 /*
-  This function search for a value saved in the localStorage with 
+  * This function search for a value saved in the localStorage with
   the name 'theme0${?}', which '?' symbol could be 1, 2 or 3.
   If there's no value saved, the default value will be 'theme01'.
 */
-function determineBodyTheme() {
+const determineBodyTheme = () => {
   const savedTheme = localStorage.getItem("theme");
-  const themeSelected = savedTheme === null ? "theme01" : savedTheme;
+  const themeSelected = savedTheme ?? "theme01";
 
   document.body.setAttribute("id", `${themeSelected}`);
-}
+};
 
-function changeToggleBallPosition() {
+const changeToggleBallPosition = () => {
   const bodyID = document.body.id;
 
   if (bodyID === "theme01") {
@@ -51,11 +51,11 @@ function changeToggleBallPosition() {
   } else {
     $calcToggleBall.style.left = "70%";
   }
-}
+};
 
-function evaluateExpression() {
+const evaluateExpression = () => {
   const calcScreenValue = $calcScreen.value;
-  const evalExpression = eval(calcScreenValue);
+  const evalExpression = new Function(`return ${calcScreenValue}`)();
   const notDecimalExpression = evalExpression == Math.round(evalExpression);
 
   try {
@@ -67,9 +67,9 @@ function evaluateExpression() {
   }
 
   disabledButtonResult();
-}
+};
 
-function addNumberToScreen(element) {
+const addNumberToScreen = (element) => {
   const calcScreenValue = Number($calcScreen.value);
   const value = element.getAttribute("data-value");
 
@@ -80,13 +80,13 @@ function addNumberToScreen(element) {
   }
 
   disabledButtonResult();
-}
+};
 
 /*
-    if the last digit on calc is a number, a special character will be added to 
+   * if the last digit on calc is a number, a special character will be added to
     the calc screen
   */
-function addSpecialCharToScreen(element) {
+const addSpecialCharToScreen = (element) => {
   const value = element.getAttribute("data-value");
 
   if (!isLastCharNan()) {
@@ -94,56 +94,50 @@ function addSpecialCharToScreen(element) {
   }
 
   disabledButtonResult();
-}
+};
 
-function eraseCharacter() {
-  const calcScreenValue = $calcScreen.value;
-  const calcScreenLastCharacter = calcScreenValue.substring(
+const eraseCharacter = () => {
+  const slicedScreenValue = $calcScreen.value.slice(
     0,
-    calcScreenValue.length - 1
+    $calcScreen.value.length - 1
   );
-  const newCalcValue = calcScreenLastCharacter;
 
-  const condition =
-    calcScreenValue === "0" ||
-    calcScreenValue.length <= 1 ||
-    /[-]/g.test(calcScreenValue);
-
-  $calcScreen.value = condition ? "0" : newCalcValue;
+  $calcScreen.value = slicedScreenValue ? slicedScreenValue : "0";
 
   disabledButtonResult();
-}
+};
 
-/* 
+/*
     * verify if the last digit on calc is a special character.
 
-    * This function is being used to disable the result button if the return 
+    * This function is being used to disable the result button if the return
     is true inside the function called disabledButtonResult().
 
     * This function is also being called inside tha function
     addSpecialCharToScreen(), which adds a operational symbol
     on the calc screen
 */
-function isLastCharNan() {
+const isLastCharNan = () => {
   const calcScreenValue = $calcScreen.value.toString();
   const calcScreenLastChar = calcScreenValue[calcScreenValue.length - 1];
 
   return isNaN(Number(calcScreenLastChar));
-}
+};
 
-function resetCalcScreenValue() {
+const resetCalcScreenValue = () => {
   $calcScreen.value = "0";
-}
+  disabledButtonResult();
+};
 
 /*
     Function that add the disabled attribute to
-    the result button when the last character 
-    on the calculator screen is a mathematical 
-    operation symbol or a special character or 
-    even if the last two characters are a division 
+    the result button when the last character
+    on the calculator screen is a mathematical
+    operation symbol or a special character or
+    even if the last two characters are a division
     or a product of any number by zero created.
   */
-function disabledButtonResult() {
+const disabledButtonResult = () => {
   const twoLastCharIsOperation = /[/*]0$/g.test($calcScreen.value);
 
   if (isLastCharNan() || twoLastCharIsOperation) {
@@ -151,9 +145,49 @@ function disabledButtonResult() {
   } else if (!isLastCharNan()) {
     $calcResultKey.removeAttribute("disabled");
   }
-}
+};
+
+const keyboardKeySelected = (collection, keyPressed) => {
+  collection.forEach((key) => {
+    const keyValue = key.getAttribute("data-value");
+
+    if (keyPressed === "," && keyValue === ".") {
+      key.click();
+      return;
+    }
+
+    if (keyPressed === "x" && keyValue === "*") {
+      key.click();
+      return;
+    }
+
+    if (keyPressed === keyValue) {
+      key.click();
+      return;
+    }
+  });
+};
 
 // Functions applied
+document.addEventListener("keydown", (event) => {
+  keyboardKeySelected($calcNumberKeys, event.key);
+  keyboardKeySelected($calcOperationalKeys, event.key);
+
+  if (event.key === "Escape") {
+    resetCalcScreenValue();
+    return;
+  }
+
+  if (event.key === "Backspace") {
+    eraseCharacter();
+    return;
+  }
+
+  if (event.key === "Enter" && !isLastCharNan()) {
+    evaluateExpression();
+  }
+});
+
 window.addEventListener("load", resetCalcScreenValue);
 
 window.addEventListener("load", determineBodyTheme);
