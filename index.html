@@ -9,87 +9,148 @@
       href="assets/images/favicon-32x32.png"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <script src="assets/js/main.js" defer></script>
+    <link rel="stylesheet" href="src/css/main.css" />
   </head>
 
-  <body id="theme01">
-    <section id="calc">
-      <header id="calc__header">
-        <div id="calc__titleArea">
-          <h1>calc</h1>
-          <div id="calc__toggleArea">
-            <label>THEME</label>
-            <div id="calc__toggleWrapper">
-              <div id="calc__toggleLabelWrapper">
-                <label for="calc__radio-theme1">1</label>
-                <label for="calc__radio-theme2">2</label>
-                <label for="calc__radio-theme3">3</label>
+  <body class="theme01">
+    <section class="calc">
+      <header class="calc__header">
+        <div class="calc__title-area">
+          <h1 class="calc__h1-title">calc</h1>
+          <div class="calc__toggle-area">
+            <h2 class="calc__h2-title">THEME</h2>
+            <div class="calc__toggle-wrapper">
+              <div class="calc__toggle-label-wrapper">
+                <label for="calc__radio-theme1" class="calc__label">1</label>
+                <label for="calc__radio-theme2" class="calc__label">2</label>
+                <label for="calc__radio-theme3" class="calc__label">3</label>
               </div>
-              <div id="calc__togglePad">
+              <div class="calc__toggle-pad">
                 <input
                   type="radio"
                   name="theme-selected"
                   checked
-                  id="calc__radio-theme1"
-                  class="calc__radio"
+                  class="calc__toggle-radio calc__toggle-radio--theme1"
                 />
                 <input
                   type="radio"
                   name="theme-selected"
-                  id="calc__radio-theme2"
-                  class="calc__radio"
+                  class="calc__toggle-radio calc__toggle-radio--theme2"
                 />
                 <input
                   type="radio"
                   name="theme-selected"
-                  id="calc__radio-theme3"
-                  class="calc__radio"
+                  class="calc__toggle-radio calc__toggle-radio--theme3"
                 />
-                <span id="calc__toggleBall"></span>
+                <span class="calc__toggle-ball"></span>
               </div>
             </div>
           </div>
         </div>
-        <input type="text" value="0" readonly id="calc__screen" />
+        <input type="text" value="0" readonly class="calc__screen" />
       </header>
 
-      <article id="calc__body">
-        <div id="calc__btnKeyArea">
-          <button class="calc__btn calc__numberKey" data-value="7">7</button>
-          <button class="calc__btn calc__numberKey" data-value="8">8</button>
-          <button class="calc__btn calc__numberKey" data-value="9">9</button>
-          <button id="calc__delKey" class="calc__btn calc__specialKey">
+      <article class="calc__body">
+        <div class="calc__btn-key-area">
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="7"
+          >
+            7
+          </button>
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="8"
+          >
+            8
+          </button>
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="9"
+          >
+            9
+          </button>
+          <button class="calc__btn calc__btn--special calc__special-key">
             del
           </button>
-          <button class="calc__btn calc__numberKey" data-value="4">4</button>
-          <button class="calc__btn calc__numberKey" data-value="5">5</button>
-          <button class="calc__btn calc__numberKey" data-value="6">6</button>
-          <button class="calc__btn calc__operationalKey" data-value="+">
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="4"
+          >
+            4
+          </button>
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="5"
+          >
+            5
+          </button>
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="6"
+          >
+            6
+          </button>
+          <button
+            class="calc__btn calc__btn--operational calc__operational-key"
+            data-value="+"
+          >
             &plus;
           </button>
-          <button class="calc__btn calc__numberKey" data-value="1">1</button>
-          <button class="calc__btn calc__numberKey" data-value="2">2</button>
-          <button class="calc__btn calc__numberKey" data-value="3">3</button>
-          <button class="calc__btn calc__operationalKey" data-value="-">
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="1"
+          >
+            1
+          </button>
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="2"
+          >
+            2
+          </button>
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="3"
+          >
+            3
+          </button>
+          <button
+            class="calc__btn calc__btn--operational calc__operational-key"
+            data-value="-"
+          >
             &minus;
           </button>
-          <button class="calc__btn calc__operationalKey" data-value=".">
+          <button
+            class="calc__btn calc__btn--operational calc__operational-key"
+            data-value="."
+          >
             &sdot;
           </button>
-          <button class="calc__btn calc__numberKey" data-value="0">0</button>
-          <button class="calc__btn calc__operationalKey" data-value="/">
+          <button
+            class="calc__btn calc__btn--number calc__number-key"
+            data-value="0"
+          >
+            0
+          </button>
+          <button
+            class="calc__btn calc__btn--operational calc__operational-key"
+            data-value="/"
+          >
             &divide;
           </button>
-          <button class="calc__btn calc__operationalKey" data-value="*">
+          <button
+            class="calc__btn calc__btn--operational calc__operational-key"
+            data-value="*"
+          >
             &times;
           </button>
         </div>
-        <div id="calc__operationalKeyArea">
-          <button id="calc__resetKey" class="calc__btn calc__specialKey">
+        <div class="calc__operational-key-area">
+          <button class="calc__btn calc__btn--special calc__special-key">
             reset
           </button>
-          <button id="calc__resultKey" class="calc__btn calc__resultKey">
+          <button class="calc__btn calc__btn--result calc__result-key">
             &equals;
           </button>
         </div>
