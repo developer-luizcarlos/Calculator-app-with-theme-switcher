@@ -10,6 +10,7 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="src/css/main.css" />
+    <script defer src="dist/scripts/main.js"></script>
   </head>
 
   <body class="theme01">
@@ -53,7 +54,7 @@
       <article class="calc__body">
         <div class="calc__btn-key-area">
           <button
-            class="calc__btn calc__btn--number calc__number-key"
+            class="calc__btn calc__number-key"
             data-value="7"
           >
             7
@@ -70,7 +71,7 @@
           >
             9
           </button>
-          <button class="calc__btn calc__btn--special calc__special-key">
+          <button class="calc__btn calc__special-key calc__btn-delete">
             del
           </button>
           <button
@@ -92,7 +93,7 @@
             6
           </button>
           <button
-            class="calc__btn calc__btn--operational calc__operational-key"
+            class="calc__btn calc__operational-key"
             data-value="+"
           >
             &plus;
@@ -147,7 +148,7 @@
           </button>
         </div>
         <div class="calc__operational-key-area">
-          <button class="calc__btn calc__btn--special calc__special-key">
+          <button class="calc__btn calc__special-key calc__reset-key">
             reset
           </button>
           <button class="calc__btn calc__btn--result calc__result-key">

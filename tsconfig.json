@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "outDir": "./dist/scripts",
+    "rootDir": "./src/scripts",
+    "strict": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmitOnError": true
+  },
+  "include": ["src/scripts"],
+  "exclude": ["node_modules"]
+}
