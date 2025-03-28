@@ -1,4 +1,7 @@
 "use strict";
+// Imports
+import { format } from "./utils.js";
+
 // DOM elements
 const $calcScreen: HTMLInputElement | null = document.querySelector(".calc__screen");
 const $calcBtnDelete: HTMLButtonElement | null = document.querySelector(".calc__btn-delete");
@@ -61,7 +64,7 @@ function deleteFromCalcScren() {
 function evaluateExpression() {
   if($calcScreen && getCalcScreenValue() && !isLastCharNan()) {
     const evaluate = new Function(`return ${getCalcScreenValue()}`);
-    setCalcScreenValue(evaluate());
+    setCalcScreenValue(format(evaluate()));
   }
 }
 
