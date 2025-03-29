@@ -77,6 +77,83 @@ const evaluateExpression = (): void => {
   }
 };
 
+const keyboardEvents = (e: KeyboardEvent) => {
+  const keyPressed = e.key;
+  const isKeyNumber = !isNaN(parseFloat(keyPressed));
+  const isOperator =
+    keyPressed === "*" ||
+    keyPressed === "/" ||
+    keyPressed === "+" ||
+    keyPressed === "-" ||
+    keyPressed === ".";
+
+  const events = {
+    keyboardBtnNumber: () => {
+      if (!isKeyNumber) return;
+
+      if ($calcBtnNumber) {
+        $calcBtnNumber.forEach((btn) => {
+          const dataValue = btn.getAttribute("data-value");
+          if (dataValue === keyPressed.toString()) {
+            btn.click();
+          }
+        });
+      }
+    },
+
+    keyboardBtnOperational: () => {
+      if (isKeyNumber || !isOperator) return;
+
+      if ($calcBtnOperation) {
+        $calcBtnOperation.forEach((btn) => {
+          const dataValue = btn.getAttribute("data-value");
+
+          if (dataValue === keyPressed.toString()) {
+            btn.click();
+          }
+        });
+      }
+    },
+
+    keyboardBtnDelete: () => {
+      if (isKeyNumber || isOperator) return;
+
+      if (
+        $calcBtnDelete &&
+        (keyPressed === "Delete" || keyPressed === "Backspace")
+      ) {
+        $calcBtnDelete.click();
+      }
+    },
+
+    keyboardReset: () => {
+      if (isKeyNumber || isOperator) return;
+
+      if ($calcBtnReset && keyPressed === "Escape") {
+        $calcBtnReset.click();
+      }
+    },
+
+    keyboardBtnResult: () => {
+      if (isKeyNumber || isOperator) return;
+
+      if ($calcBtnResult && keyPressed === "=") {
+        $calcBtnResult.click();
+      }
+    },
+
+    triggerEvents: function () {
+      this.keyboardBtnNumber();
+      this.keyboardBtnOperational();
+      this.keyboardBtnDelete();
+      this.keyboardReset();
+      this.keyboardBtnResult();
+    },
+  };
+
+  return events.triggerEvents();
+};
+
 const resetCalc = (): void => {
   if ($calcScreen) {
     setCalcScreenValue("0");
@@ -84,6 +161,10 @@ const resetCalc = (): void => {
 };
 
 // Functions applied
+document.addEventListener("keydown", (e: KeyboardEvent) => {
+  keyboardEvents(e);
+});
+
 if ($calcBtnNumber) {
   $calcBtnNumber.forEach((btnNumber) => {
     btnNumber.addEventListener("click", () => {
