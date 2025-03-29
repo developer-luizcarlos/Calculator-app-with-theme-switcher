@@ -1,12 +1,13 @@
 "use strict";
 // DOM elements
 const $body: HTMLBodyElement | null = document.querySelector("body");
-const $calcInputs: NodeListOf<HTMLInputElement> | null = document.querySelectorAll(".calc__toggle-radio");
+const $calcInputs: NodeListOf<HTMLInputElement> | null =
+  document.querySelectorAll(".calc__toggle-radio");
 
 // Functions
 const applyTheme = () => {
   const theme = getTheme();
-  if($body) {
+  if ($body) {
     $body.setAttribute("class", theme);
   }
   updateThumbLeft();
@@ -22,16 +23,16 @@ const saveTheme = (index: number) => {
 
 const setTheme = (index: number) => {
   saveTheme(index);
-  const theme = getTheme();
   applyTheme();
 };
 
 const updateThumbLeft = () => {
-  const $calcToggleBall: HTMLSpanElement | null = document.querySelector(".calc__toggle-ball");
+  const $calcToggleBall: HTMLSpanElement | null =
+    document.querySelector(".calc__toggle-ball");
   const theme = getTheme();
   let toggleLeft: number = 0;
 
-  switch(theme) {
+  switch (theme) {
     case "theme-1":
       toggleLeft = 4;
       break;
@@ -46,7 +47,7 @@ const updateThumbLeft = () => {
       break;
   }
 
-  if($calcToggleBall) {
+  if ($calcToggleBall) {
     $calcToggleBall.style.left = `${toggleLeft}%`;
   }
 };
@@ -54,7 +55,7 @@ const updateThumbLeft = () => {
 // Functions applied
 window.addEventListener("load", applyTheme);
 
-if($calcInputs) {
+if ($calcInputs) {
   $calcInputs.forEach((input, index) => {
     input.addEventListener("input", () => {
       setTheme(index);
