@@ -9,70 +9,70 @@ const $calcBtnReset = document.querySelector(".calc__reset-key");
 const $calcBtnNumber = document.querySelectorAll(".calc__number-key");
 const $calcBtnOperation = document.querySelectorAll(".calc__operational-key");
 // Functions
-function setCalcScreenValue(value) {
+const setCalcScreenValue = (value) => {
     if ($calcScreen) {
         $calcScreen.value = value;
     }
-}
-function getCalcScreenValue() {
+};
+const getCalcScreenValue = () => {
     if ($calcScreen) {
         return $calcScreen.value;
     }
-}
-function isLastCharNan() {
+};
+const isLastCharNan = () => {
     if ($calcScreen) {
         const lastChar = getCalcScreenValue().at(-1);
         return isNaN(parseFloat(lastChar));
     }
     return false;
-}
-function addNumberToScreen(item) {
+};
+const addNumberToScreen = (item) => {
     let calcValue = getCalcScreenValue();
     if (calcValue) {
         const dataValue = item.getAttribute("data-value");
-        const newCalcValue = calcValue === "0" ? dataValue : calcValue += dataValue;
+        const newCalcValue = calcValue === "0" ? dataValue : (calcValue += dataValue);
         setCalcScreenValue(newCalcValue ?? "0");
     }
-}
-function addOperationalToScreen(item) {
+};
+const addOperationalToScreen = (item) => {
     if (isLastCharNan())
         return;
     let calcValue = getCalcScreenValue();
     if (calcValue && !isLastCharNan()) {
         const dataValue = item.getAttribute("data-value");
-        setCalcScreenValue(calcValue += dataValue);
+        setCalcScreenValue((calcValue += dataValue));
     }
-}
-function deleteFromCalcScren() {
+};
+const deleteFromCalcScren = () => {
     if ($calcScreen) {
         const calcValue = getCalcScreenValue();
         const slicedValue = calcValue?.slice(0, -1);
         const newValue = calcValue === "0" || calcValue.length === 1 ? "0" : slicedValue;
         setCalcScreenValue(newValue);
     }
-}
-function evaluateExpression() {
+};
+const evaluateExpression = () => {
     if ($calcScreen && getCalcScreenValue() && !isLastCharNan()) {
         const evaluate = new Function(`return ${getCalcScreenValue()}`);
         setCalcScreenValue(format(evaluate()));
     }
-}
-function resetCalc() {
+};
+const resetCalc = () => {
     if ($calcScreen) {
         setCalcScreenValue("0");
     }
-}
+};
 // Functions applied
 if ($calcBtnNumber) {
-    $calcBtnNumber.forEach(btnNumber => {
-        btnNumber.addEventListener("click", function () {
+    $calcBtnNumber.forEach((btnNumber) => {
+        btnNumber.addEventListener("click", () => {
             addNumberToScreen(btnNumber);
         });
     });
 }
 if ($calcBtnOperation) {
-    $calcBtnOperation.forEach(btnOp => {
-        btnOp.addEventListener("click", function () {
+    $calcBtnOperation.forEach((btnOp) => {
+        btnOp.addEventListener("click", () => {
             addOperationalToScreen(btnOp);
         });
     });

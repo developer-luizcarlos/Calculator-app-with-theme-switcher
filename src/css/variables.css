@@ -15,7 +15,7 @@
   --other-textcolor: hsl(0, 0%, 100%);
 }
 
-body#theme01 {
+body.theme-1 {
   --main-background: hsl(222, 26%, 31%);
   --toggle-background: hsl(223, 31%, 20%);
   --keypad-background: hsl(223, 31%, 20%);
@@ -32,7 +32,7 @@ body#theme01 {
   --other-textcolor: hsl(0, 0%, 100%);
 }
 
-body#theme02 {
+body.theme-2 {
   --main-background: hsl(0, 0%, 90%);
   --toggle-background: hsl(0, 5%, 81%);
   --keypad-background: hsl(0, 5%, 81%);
@@ -49,7 +49,7 @@ body#theme02 {
   --other-textcolor: hsl(60, 10%, 19%);
 }
 
-body#theme03 {
+body.theme-3 {
   --main-background: hsl(268, 75%, 9%);
   --toggle-background: hsl(268, 71%, 12%);
   --keypad-background: hsl(268, 71%, 12%);
